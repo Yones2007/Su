@@ -1,0 +1,10 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # منع الوصول المباشر لملفات البروكسي
+    RewriteCond %{HTTP_REFERER} !^https?://(www\.)?yourdomain\.com [NC]
+    RewriteRule ^(proxy|proxy_ts)\.php$ - [F,L]
+    
+    # إعادة كتابة الروابط
+    RewriteRule ^play/([a-f0-9-]+)$ index.php?videoId=$1 [L,QSA]
+</IfModule>
